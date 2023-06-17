@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        background-color: black;
+      }
+    </style>
+    <script>
+      const prof_disc = [
+        "Clarimundo-POO1",
+        "Clarimundo-POO1",
+        "Clarimundo-POO1",
+        "Clarimundo-POO1",
+        "Wilton-WebDesing",
+        "Wilton-WebDesing",
+        "Wilton-WebDesing",
+        "Wilton-WebDesing",
+        "Bruno-Requisitos",
+        "Bruno-Requisitos",
+        "Bruno-Requisitos",
+        "Bruno-Requisitos",
+        "Cricia-BDA",
+        "Cricia-BDA",
+        "Cricia-BDA",
+        "Cricia-BDA",
+        "Nelio-Logica",
+        "Nelio-Logica",
+        "Nelio-Logica",
+        "Nelio-Logica",
+        "Clarimundo-POO2",
+        "Clarimundo-POO2",
+        "Clarimundo-POO2",
+        "Clarimundo-POO2",
+        "Wilton-JavaScript",
+        "Wilton-JavaScript",
+        "Wilton-JavaScript",
+        "Wilton-JavaScript",
+        "Bruno-Java",
+        "Bruno-Java",
+        "Bruno-Java",
+        "Bruno-Java",
+        "Cricia-BDA2",
+        "Cricia-BDA2",
+        "Cricia-BDA2",
+        "Cricia-BDA2",
+        "Edson-MVC",
+        "Edson-MVC",
+        "Edson-MVC",
+        "Edson-MVC",
+        "Clarimundo-POO3",
+        "Clarimundo-POO3",
+        "Clarimundo-POO3",
+        "Clarimundo-POO3",
+        "Wilton-REACT",
+        "Wilton-REACT",
+        "Wilton-REACT",
+        "Wilton-REACT",
+        "Bruno-Teste Unitatio",
+        "Bruno-Teste Unitatio",
+        "Bruno-Teste Unitatio",
+        "Bruno-Teste Unitatio",
+        "Cricia-BDA3",
+        "Cricia-BDA3",
+        "Cricia-BDA3",
+        "Cricia-BDA3",
+        "Nelio-Monolitico",
+        "Nelio-Monolitico",
+        "Nelio-Monolitico",
+        "Nelio-Monolitico",
+        "Edson-React-native",
+        "Edson-React-native",
+        "Edson-React-native",
+        "Edson-React-native",
+        "Wilton-IHC",
+        "Wilton-IHC",
+        "Wilton-IHC",
+        "Wilton-IHC",
+        "Carlos-Empreendedorismo",
+        "Carlos-Empreendedorismo",
+        "Carlos-Empreendedorismo",
+        "Carlos-Empreendedorismo",
+        "Camilo-MicroServicos",
+        "Camilo-MicroServicos",
+        "Camilo-MicroServicos",
+        "Camilo-MicroServicos",
+        "Camilo-NoSql",
+        "Camilo-NoSql",
+        "Camilo-NoSql",
+        "Camilo-NoSql",
+        "Clarimundo-IC",
+        "Clarimundo-IC",
+        "Clarimundo-IC",
+        "Clarimundo-IC",
+        "Sabrina-Libras",
+        "Sabrina-Libras",
+        "Sabrina-Libras",
+        "Sabrina-Libras",
+        "Magno-Prelamo",
+        "Magno-Prelamo",
+        "Magno-Prelamo",
+        "Magno-Prelamo",
+        "Edson-opcional 1",
+        "Edson-opcional 1",
+        "Edson-opcional 1",
+        "Edson-opcional 1",
+        "Camilo-Segurança da Internet",
+        "Camilo-Segurança da Internet",
+        "Camilo-Segurança da Internet",
+        "Camilo-Segurança da Internet",
+      ];
+      let cont = [];
+      let arrayNota = [];
+      function shuffleArray(array) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledArray[i], shuffledArray[j]] = [
+            shuffledArray[j],
+            shuffledArray[i],
+          ];
+        }
+        return shuffledArray;
+      }
+      function getUniqueGroups(array, groupSize, pop) {
+        for (let a = 0; a < pop; a++) {
+          const periodos = [];
+          for (let i = 0; i < prof_disc.length; i += 20) {
+            const periodo = prof_disc.slice(i, i + 20);
+            periodos.push(periodo);
+          }
+          let cont = 0;
+          const shuffledArray = [];
+          while (cont < 5) {
+            const shuffledPeriod = shuffleArray(periodos[cont]);
+            shuffledArray.push(...shuffledPeriod);
+            cont++;
+          }
+          const groups = [];
+
+          while (shuffledArray.length > 0) {
+            const group = shuffledArray.splice(0, groupSize);
+            groups.push(group);
+          }
+          validation(groups);
+        }
+      }
+      function validation(group) {
+        let contadorValidateFail = 0;
+        let contadorValideSucess = 0;
+        for (let i = 0; i < 5; i++) {
+          let avial = false;
+          const primeiro_periodo = group[i];
+          const segundo_periodo = group[i + 5];
+          const terceiro_periodo = group[i + 10];
+          const quarto_periodo = group[i + 15];
+          const quinto_periodo = group[i + 20];
+
+          loop1: for (let i = 0; i < primeiro_periodo.length; i++) {
+            avial = false;
+            const name_prof_1 = primeiro_periodo[i].split("-");
+            for (let j = 0; j < segundo_periodo.length; j++) {
+              const name_prof_2 = segundo_periodo[i].split("-");
+              if (name_prof_1[0] == name_prof_2[0]) {
+                avial = true;
+                contadorValidateFail++;
+              }
+              for (let k = 0; k < terceiro_periodo.length; k++) {
+                const name_prof_3 = terceiro_periodo[i].split("-");
+                if (
+                  name_prof_1[0] == name_prof_3[0] ||
+                  name_prof_2[0] == name_prof_3[0]
+                ) {
+                  avial = true;
+                  contadorValidateFail++;
+                }
+                loop4: for (let l = 0; l < quarto_periodo.length; l++) {
+                  const name_prof_4 = quarto_periodo[i].split("-");
+                  if (
+                    name_prof_1[0] == name_prof_4[0] ||
+                    name_prof_2[0] == name_prof_4[0] ||
+                    name_prof_3[0] == name_prof_4[0]
+                  ) {
+                    avial = true;
+                    contadorValidateFail++;
+                  }
+                  for (let m = 0; m < quinto_periodo.length; m++) {
+                    const name_prof_5 = quinto_periodo[i].split("-");
+                    if (
+                      name_prof_1[0] == name_prof_5[0] ||
+                      name_prof_2[0] == name_prof_5[0] ||
+                      name_prof_3[0] == name_prof_5[0] ||
+                      name_prof_4[0] == name_prof_5[0]
+                    ) {
+                      contadorValidateFail++;
+                      continue loop1; // Indica que o loop deve ser interrompido
+                    } else if (avial) {
+                      continue loop1;
+                    } else {
+                      contadorValideSucess++;
+                      continue loop1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        arrayNota.push(group);
+        cont.push(contadorValidateFail);
+      }
+      function ordernacao() {
+        const prof = arrayNota;
+        const notas = cont;
+
+        const combinedArray = prof.map((nome, index) => ({
+          nome,
+          numero: notas[index],
+        }));
+
+        combinedArray.sort((a, b) => a.numero - b.numero);
+
+        const nomesOrdenados = combinedArray.map((objeto) => objeto.nome);
+        const numerosOrdenados = combinedArray.map((objeto) => objeto.numero);
+
+      }
+      getUniqueGroups(prof_disc, 4, 10);
+      ordernacao()
+    </script>
+  </head>
+
+  <body>
+    <!-- <button onclick="getUniqueGroups(prof_disc, 4)">Teste</button> -->
+  </body>
+</html>
